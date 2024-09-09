@@ -2,11 +2,13 @@
 
 from __future__ import annotations
 
+from typing import Optional
+
+from koerce import attribute
 from public import public
 
 import ibis.expr.datatypes as dt
 import ibis.expr.rules as rlz
-from ibis.common.annotations import attribute
 from ibis.expr.operations.core import Unary, Value
 
 
@@ -41,13 +43,16 @@ class MapGet(Value):
 
     arg: Value[dt.Map]
     key: Value
-    default: Value = None
+    default: Optional[Value] = None
 
     shape = rlz.shape_like("args")
 
     @attribute
     def dtype(self):
-        return dt.higher_precedence(self.default.dtype, self.arg.dtype.value_type)
+        if self.default is None:
+            return self.arg.dtype.value_type
+        else:
+            return dt.higher_precedence(self.default.dtype, self.arg.dtype.value_type)
 
 
 @public
