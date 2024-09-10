@@ -4268,7 +4268,7 @@ class Table(Expr, _FixedTextJupyterMixin):
         if isinstance(values_agg, str):
             values_agg = operator.methodcaller(values_agg)
         elif isinstance(values_agg, Deferred):
-            values_agg = lambda t: resolve(values_agg, _=t)
+            values_agg = lambda t, what=values_agg: resolve(what, _=t)
 
         if names is None:
             # no names provided, compute them from the data

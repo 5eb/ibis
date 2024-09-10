@@ -66,7 +66,6 @@ import ibis.expr.datatypes as dt
 import ibis.expr.operations as ops
 import ibis.expr.types as ir
 from ibis import util
-from ibis.common.collections import frozendict  # noqa: TCH001
 from ibis.common.selectors import All, Any, Expandable, Selector
 from ibis.common.typing import VarTuple  # noqa: TCH001
 
@@ -424,7 +423,7 @@ class Across(Expandable):
     funcs: Union[
         Builder,
         Callable[[ir.Value], ir.Value],
-        frozendict[Optional[str], Union[Builder, Callable[[ir.Value], ir.Value]]],
+        dict[Optional[str], Union[Builder, Callable[[ir.Value], ir.Value]]],
     ]
     names: Union[str, Callable[[str, Optional[str]], str]]
 
