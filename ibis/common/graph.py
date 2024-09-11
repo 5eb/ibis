@@ -46,7 +46,7 @@ def _flatten_collections(node: Any) -> Iterator[N]:
     >>> from ibis.common.grounds import Concrete
     >>> from ibis.common.graph import Node
     >>>
-    >>> class MyNode(Concrete, Node):
+    >>> class MyNode(Node):
     ...     number: int
     ...     string: str
     ...     children: tuple[Node, ...]
@@ -94,7 +94,7 @@ def _recursive_lookup(obj: Any, dct: dict) -> Any:
     >>> from ibis.common.grounds import Concrete
     >>> from ibis.common.graph import Node
     >>>
-    >>> class MyNode(Concrete, Node):
+    >>> class MyNode(Node):
     ...     number: int
     ...     string: str
     ...     children: tuple[Node, ...]
