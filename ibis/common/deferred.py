@@ -5,7 +5,7 @@ import inspect
 from collections.abc import Callable
 from typing import Any, TypeVar, overload
 
-from koerce import Builder, Call, Deferred, Var, _
+from koerce import Builder, Call, Deferred, Var
 
 
 class _Variable(Var):

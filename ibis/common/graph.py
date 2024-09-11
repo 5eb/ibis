@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import itertools
-from abc import abstractmethod
 from collections import deque
 from collections.abc import Callable, Iterable, Iterator, KeysView, Mapping, Sequence
 from typing import TYPE_CHECKING, Any, Optional, TypeVar, Union
