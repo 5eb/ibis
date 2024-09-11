@@ -11,7 +11,7 @@ import itertools
 import typing
 from typing import TYPE_CHECKING, Any, Optional, TypeVar, overload
 
-from koerce import argument, attribute
+from koerce import argument, attribute, deferrable
 from public import public
 
 import ibis.common.exceptions as exc
@@ -21,7 +21,6 @@ import ibis.expr.operations as ops
 import ibis.expr.rules as rlz
 from ibis import util
 from ibis.common.collections import FrozenDict
-from ibis.common.deferred import deferrable
 
 if TYPE_CHECKING:
     from collections.abc import Callable, Iterable, MutableMapping

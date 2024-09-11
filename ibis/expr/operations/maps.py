@@ -43,16 +43,13 @@ class MapGet(Value):
 
     arg: Value[dt.Map]
     key: Value
-    default: Optional[Value] = None
+    default: Value = None
 
     shape = rlz.shape_like("args")
 
     @attribute
     def dtype(self):
-        if self.default is None:
-            return self.arg.dtype.value_type
-        else:
-            return dt.higher_precedence(self.default.dtype, self.arg.dtype.value_type)
+        return dt.higher_precedence(self.default.dtype, self.arg.dtype.value_type)
 
 
 @public

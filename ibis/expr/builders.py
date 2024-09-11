@@ -3,7 +3,7 @@ from __future__ import annotations
 import math
 from typing import TYPE_CHECKING, Any, Literal, Optional, Union
 
-from koerce import Annotable, Deferred, annotated, attribute
+from koerce import Annotable, Deferred, annotated, attribute, deferrable
 from koerce import Builder as Resolver
 
 import ibis
@@ -12,7 +12,6 @@ import ibis.expr.operations as ops
 import ibis.expr.rules as rlz
 import ibis.expr.types as ir
 from ibis import util
-from ibis.common.deferred import deferrable
 from ibis.common.exceptions import IbisInputError
 from ibis.common.selectors import Selector  # noqa: TCH001
 from ibis.common.typing import VarTuple  # noqa: TCH001

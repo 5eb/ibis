@@ -1,20 +1,10 @@
 from __future__ import annotations
 
 import inspect
-import re
 import sys
-from abc import abstractmethod
 from itertools import zip_longest
-from typing import TYPE_CHECKING, Any, Optional, TypeVar, get_args, get_origin
-from typing import get_type_hints as _get_type_hints
-
-from koerce.utils import get_type_hints
-
-if TYPE_CHECKING:
-    from typing_extensions import Self
-
 from types import UnionType
-from typing import TypeAlias
+from typing import Any, Optional, TypeAlias, TypeVar
 
 # Keep this alias in sync with unittest.case._ClassInfo
 _ClassInfo: TypeAlias = type | UnionType | tuple["_ClassInfo", ...]
@@ -77,19 +67,6 @@ def evaluate_annotations(
         result[k] = v
 
     return result
-
-
-def format_typehint(typ: Any) -> str:
-    if isinstance(typ, type):
-        return typ.__name__
-    elif isinstance(typ, TypeVar):
-        if typ.__bound__ is None:
-            return str(typ)
-        else:
-            return format_typehint(typ.__bound__)
-    else:
-        # remove the module name from the typehint, including generics
-        return re.sub(r"(\w+\.)+", "", str(typ))
 
 
 class DefaultTypeVars:

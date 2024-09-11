@@ -135,7 +135,7 @@ class DataType(Concrete):
         try:
             return dtype(value)
         except (TypeError, RuntimeError) as e:
-            raise CoercionError("Unable to coerce to a DataType") from e
+            raise ValueError("Unable to coerce to a DataType") from e
 
     def __call__(self, **kwargs):
         return self.copy(**kwargs)

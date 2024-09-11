@@ -8,7 +8,6 @@ from ibis.common.typing import (
     DefaultTypeVars,
     Sentinel,
     evaluate_annotations,
-    get_type_hints,
 )
 
 T = TypeVar("T")
@@ -47,27 +46,6 @@ def test_evaluate_annotations_with_self() -> None:
     myhint = ForwardRef(f"{__name__}.My")
     hints = evaluate_annotations(annots, module_name=__name__, class_name="My")
     assert hints == {"a": Union[int, myhint], "b": Optional[myhint]}
-
-
-def test_get_type_hints() -> None:
-    hints = get_type_hints(My)
-    assert hints == {"a": T, "b": S, "c": str}
-
-    hints = get_type_hints(My, include_properties=True)
-    assert hints == {"a": T, "b": S, "c": str, "d": Optional[str], "e": U}
-
-    hints = get_type_hints(MyChild, include_properties=True)
-    assert hints == {"a": T, "b": S, "c": str, "d": Optional[str], "e": U}
-
-    # test that we don't actually mutate the My.__annotations__
-    hints = get_type_hints(My)
-    assert hints == {"a": T, "b": S, "c": str}
-
-    hints = get_type_hints(example)
-    assert hints == {"a": int, "b": str, "return": str}
-
-    hints = get_type_hints(example, include_properties=True)
-    assert hints == {"a": int, "b": str, "return": str}
 
 
 class A(Generic[T, S, U]):

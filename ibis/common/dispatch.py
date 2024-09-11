@@ -6,13 +6,9 @@ import inspect
 import re
 from collections import defaultdict
 from types import UnionType
-from typing import Union
+from typing import Union, get_args, get_origin
 
-from ibis.common.typing import (
-    evaluate_annotations,
-    get_args,
-    get_origin,
-)
+from ibis.common.typing import evaluate_annotations
 from ibis.util import import_object, unalias_package
 
 

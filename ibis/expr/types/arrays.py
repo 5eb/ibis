@@ -3,11 +3,10 @@ from __future__ import annotations
 import inspect
 from typing import TYPE_CHECKING
 
-from koerce import resolve
+from koerce import Deferred, deferrable, resolve
 from public import public
 
 import ibis.expr.operations as ops
-from ibis.common.deferred import Deferred, deferrable
 from ibis.expr.types.generic import Column, Scalar, Value
 
 if TYPE_CHECKING:

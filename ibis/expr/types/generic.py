@@ -3,7 +3,7 @@ from __future__ import annotations
 from collections.abc import Iterable, Sequence
 from typing import TYPE_CHECKING, Any
 
-from koerce import Deferred, _, resolve
+from koerce import Deferred, _, deferrable, resolve
 from public import public
 
 import ibis
@@ -11,7 +11,6 @@ import ibis.common.exceptions as com
 import ibis.expr.builders as bl
 import ibis.expr.datatypes as dt
 import ibis.expr.operations as ops
-from ibis.common.deferred import deferrable
 from ibis.expr.rewrites import rewrite_window_input
 from ibis.expr.types.core import Expr, _binop, _FixedTextJupyterMixin, _is_null_literal
 from ibis.util import deprecated, promote_list, warn_deprecated

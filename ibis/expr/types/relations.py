@@ -3838,7 +3838,7 @@ class Table(Expr, _FixedTextJupyterMixin):
         if values_transform is None:
             values_transform = toolz.identity
         elif isinstance(values_transform, Deferred):
-            values_transform = lambda t: resolve(values_transform, _=t)
+            values_transform = lambda t, what=values_transform: resolve(what, _=t)
 
         pieces = []
 
