@@ -2,15 +2,14 @@ from __future__ import annotations
 
 from typing import Optional
 
+from koerce import Is, attribute, replace
 from public import public
 
 import ibis
 import ibis.expr.datashape as ds
 import ibis.expr.datatypes as dt
 import ibis.expr.operations as ops
-from ibis.common.annotations import attribute
 from ibis.common.collections import FrozenDict
-from ibis.common.patterns import InstanceOf, replace
 from ibis.common.typing import VarTuple  # noqa: TCH001
 from ibis.expr.rewrites import lower_stringslice, p, replace_parameter
 from ibis.expr.schema import Schema
@@ -149,7 +148,7 @@ def is_columnar(node):
     return isinstance(node, ops.Value) and node.shape.is_columnar()
 
 
-computable_column = p.Value(shape=ds.columnar) & ~InstanceOf(
+computable_column = p.Value(shape=ds.columnar) & ~Is(
     (
         ops.Reduction,
         ops.Analytic,
