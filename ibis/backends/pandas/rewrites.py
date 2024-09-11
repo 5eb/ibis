@@ -325,11 +325,11 @@ def rewrite_limit(_, **kwargs):
 
     n = n.as_table().op()
     if isinstance(n, ops.Aggregate):
-        n = rewrite_aggregate.match(n, context={})
+        n = rewrite_aggregate.apply(n)
 
     offset = offset.as_table().op()
     if isinstance(offset, ops.Aggregate):
-        offset = rewrite_aggregate.match(offset, context={})
+        offset = rewrite_aggregate.apply(offset)
 
     return PandasLimit(_.parent, n, offset)
 
