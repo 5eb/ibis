@@ -366,7 +366,7 @@ class Backend(SQLBackend, CanListCatalog, CanCreateDatabase):
     ) -> list[str]:
         with self._active_catalog(catalog):
             databases = [
-                db.namespace for db in self._session.sql("SHOW DATABASES").collect()
+                db.databaseName for db in self._session.sql("SHOW DATABASES").collect()
             ]
         return self._filter_with_like(databases, like)
 
